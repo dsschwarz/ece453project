@@ -1,10 +1,16 @@
 import java.util.*;
 
+public class Scope {
+    public String name;
+    public Set<String> functionCalls; // names of all the functions called in this scope
+}
+
 public class Parser {
     // createKey(functionName, functionName) -> #times functions are called in the same scope
     public Dictionary<String, Integer> functionPairCount = new Hashtable<String, Integer>() {};
     // functionName -> #time function is called
     public Dictionary<String, Integer> functionCounts = new Hashtable<String, Integer>();
+    public List<Scope> scopes; // parsed call tree
 
     /**
      * Parse a callgraph file
