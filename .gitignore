@@ -1,3 +1,4 @@
 pi/.idea/*
-pi/pi.iml
+*.iml
+pi/out/*
 
