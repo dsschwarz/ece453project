@@ -1,0 +1,3 @@
+#!/bin/bash
+
+java Main $@ -Xms128m -Xmx128m
