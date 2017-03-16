@@ -51,7 +51,7 @@ public class Parser {
             if (callee != null) {
                 scope.functionCalls.add(callee);
             } else {
-                System.out.println("Reached end of scope <" + scope.name + ">");
+                // System.out.println("Reached end of scope <" + scope.name + ">");
                 break;
             }
             currentLine = bufferedReader.readLine();
