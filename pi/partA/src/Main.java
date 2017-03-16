@@ -8,11 +8,6 @@ public class Main {
     public static int minSupport = 3;
 
     public static void main(String [] args) {
-//        String filename = "callgraphtest.txt";
-
-        System.out.println(args.length);
-        System.out.println(Arrays.toString(args));
-
         String filename = args[0]; // filename that pipair wrote to
 
         // if support argument, overwrite default minimum support
