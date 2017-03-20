@@ -1,6 +1,6 @@
 #!/bin/bash
 
 callgraphname="callgraph"
-opt -print-callgraph $0 2>&1 | tee -a $callgraphname
+opt -print-callgraph $1 2>&1 | tee $callgraphname
 
 java -classpath out -Xms128m -Xmx128m Main $callgraphname $2 $3
