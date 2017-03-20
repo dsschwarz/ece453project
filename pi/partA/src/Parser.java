@@ -65,6 +65,11 @@ public class Parser {
                 recordFunctionPair(functionCalls.get(i), functionCalls.get(j));
             }
         }
+
+        for (String functionName: functionCalls) {
+            recordFunctionCall(functionName); // record each function name (only once per function per scope)
+        }
+
     }
 
     /**
@@ -92,19 +97,26 @@ public class Parser {
         }
     }
 
+    private void recordFunctionCall(String name) {
+        Integer current = functionCounts.get(name);
+        if (current == null) {
+            functionCounts.put(name, 1); // not recorded yet
+        } else {
+            functionCounts.put(name, current + 1); // increment the count
+        }
+    }
+
     private Scope matchNode(String line) {
         // if using regex solution, move this into constructor
-        Pattern signature = Pattern.compile("^Call\\sgraph\\snode\\sfor\\sfunction\\:\\s'([^']*)'.*([0-9]+)$");
+        Pattern signature = Pattern.compile("^Call\\sgraph\\snode\\sfor\\sfunction\\:\\s'([^']*)'");
 
         Matcher matcher = signature.matcher(line);
         if (matcher.find()) {
             String functionName = matcher.group(1);
-            Integer callCount = Integer.valueOf(matcher.group(2));
 
             assert functionCounts.get(functionName) == null; // each node must only appear once!
 
             Scope scope = new Scope(matcher.group(1));
-            functionCounts.put(functionName, callCount);
             scopes.add(scope);
             return scope;
         } else {

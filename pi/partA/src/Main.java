@@ -44,7 +44,8 @@ public class Main {
             Set<String> allOtherFunctions = getDifference(scope, parser.functionCounts.keys());
 
             for (String function : scope.functionCalls) {
-                Double callCount = Double.valueOf(parser.functionCounts.get(function)); // number of times this function appears
+                Integer callCountTemp = parser.functionCounts.get(function);
+                Double callCount = Double.valueOf(callCountTemp); // number of times this function appears
 
                 // compare this function against all functions not in the current scope
                 for (String otherFunction : allOtherFunctions) {
