@@ -94,7 +94,7 @@ public class Parser {
 
     private Scope matchNode(String line) {
         // if using regex solution, move this into constructor
-        Pattern signature = Pattern.compile("^Call\\sgraph\\snode\\sfor\\sfunction\\:\\s'([a-zA-Z][a-zA-Z0-9]*)'.*([0-9]+)$");
+        Pattern signature = Pattern.compile("^Call\\sgraph\\snode\\sfor\\sfunction\\:\\s'([^']*)'.*([0-9]+)$");
 
         Matcher matcher = signature.matcher(line);
         if (matcher.find()) {
@@ -115,7 +115,7 @@ public class Parser {
     private String matchCallee(String line) {
         // if using regex solution, move this into constructor
         Pattern signature =
-                Pattern.compile("^\\s+CS<[^>]*>\\scalls\\sfunction\\s'([a-zA-Z][a-zA-Z0-9]*)'");
+                Pattern.compile("^\\s+CS<[^>]*>\\scalls\\sfunction\\s'([^']*)'");
 
         Matcher matcher = signature.matcher(line);
         if (matcher.find()) {
